@@ -3,6 +3,7 @@
 #include <block.h>
 #include <car.h>
 #include <QGraphicsItem>
+#include <QTimer
 
 class CarCenter : public QGraphicsRectItem
 {

@@ -19,6 +19,8 @@ Car::Car(QPointF start_pos, Map* map_ptr, unsigned int *iptr, unsigned int *died
     direction = 0;
     fps = 1000/160;
     previous_block = nullptr;
+    move_timer = new QTimer(this);
+
     position.setX(start_pos.rx());
     position.setY(start_pos.ry());
 

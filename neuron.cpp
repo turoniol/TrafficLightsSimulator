@@ -7,6 +7,7 @@
 //        weights[i] = std::rand() % 10000 / 10000.0f - 0.5f;
 Neuron::Neuron(const unsigned int n, std::string *filename)
 {
+  weights = nullptr;
     srand(time(nullptr));
     create(n, filename);
 }

@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
   mapIndex = 0;
   scene = nullptr;
   ui->setupUi(this);
+  // graphics
   ui->graphicsView->setGeometry(0, 0, w, h);
   ui->pushButton->setGeometry(1700, 0, 100, 50);
   ui->pushButton_left->setGeometry(1700, 50, 50, 50);
@@ -28,9 +29,11 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(timer, &QTimer::timeout, this, &MainWindow::renewTL);
   connect(carSpawnTimer, &QTimer::timeout, this, &MainWindow::on_pushButton_clicked);
 }
+
 void MainWindow::renewTL(){
   scene->renewTLStatus();
 }
+
 void MainWindow::map_posLabel()
 {
   ui->label_2->setNum((int)mapIndex);
@@ -42,6 +45,7 @@ void MainWindow::createMapFileNameArray()
   QFile file;
   QString mapsPath = QDir::currentPath() + "/maps/map";
   QString path = mapsPath + QString::number(i) + ".txt";
+  qDebug() << mapsPath;
 
   file.setFileName(path);
   while(file.exists())

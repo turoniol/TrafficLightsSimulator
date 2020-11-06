@@ -4,6 +4,7 @@ CarCenter::CarCenter()
 {
     car_number = 0;
     car_iterations = 0;
+    car = nullptr;
 }
 
 void CarCenter::searchCenterPoint(Map* map)
@@ -14,19 +15,19 @@ void CarCenter::searchCenterPoint(Map* map)
             switch (obj->getBlock_type()) {
             case DOWN:
                 if(y == 0)
-                    spawners.emplace_back(obj);
+                    spawners.append(obj);
                 break;
             case UP:
                 if(y == map->getArray_y() - 1)
-                    spawners.emplace_back(obj);
+                    spawners.append(obj);
                 break;
             case LEFT:
                 if(x == map->getArray_x() - 1)
-                    spawners.emplace_back(obj);
+                    spawners.append(obj);
                 break;
             case RIGHT:
                 if(x == 0)
-                    spawners.emplace_back(obj);
+                    spawners.append(obj);
                 break;
             }
         }
