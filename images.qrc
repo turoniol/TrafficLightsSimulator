@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/blue_car.png</file>
+        <file>images/btn_background.png</file>
+        <file>images/grass.png</file>
+        <file>images/greenl.png</file>
+        <file>images/red_car.png</file>
+        <file>images/redl.png</file>
+        <file>images/road.png</file>
+        <file>images/road_central.png</file>
+        <file>images/road_central_false.png</file>
+        <file>images/road_false.png</file>
+        <file>images/road_true.png</file>
+        <file>images/yellow_car.png</file>
+        <file>images/yellowl.png</file>
+        <file>images/tree.jpeg</file>
+        <file>images/build3.png</file>
+        <file>images/build2.png</file>
+        <file>images/build1.png</file>
+    </qresource>
+</RCC>

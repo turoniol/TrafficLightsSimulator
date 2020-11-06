@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>maps/a123.txt</file>
+        <file>maps/jdkab.txt</file>
+        <file>maps/map.txt</file>
+    </qresource>
+</RCC>
