@@ -25,7 +25,6 @@ TrafficLight::TrafficLight(Map& ptr)
 }
 void TrafficLight::searchCrossroad()
 {
-    //пробежка по всей карте и поиск перекрёстков
     for(unsigned int counter_y = 0; counter_y < map_ptr->getArray_y(); counter_y++){
         for(unsigned int counter_x = 0; counter_x < map_ptr->getArray_x(); counter_x++){
             if( map_ptr->getMap_ptr()[counter_x + counter_y*map_ptr->getArray_x()].getBlock_type() == DOWN + LEFT &&

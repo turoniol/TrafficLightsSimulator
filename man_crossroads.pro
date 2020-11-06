@@ -26,32 +26,34 @@ CONFIG += c++14
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    map.cpp \
-    trafficlight.cpp \
-    carcenter.cpp \
-    car.cpp \
-    block.cpp \
-    scene.cpp \
-    neuron.cpp \
-    layer.cpp \
-    net.cpp \
-    tlcontrol.cpp \
-    trafficlightgroup.cpp
+	windows/mainwindow.cpp \
+    map/map.cpp \
+    traffic_light/trafficlight.cpp \
+    cars/carcenter.cpp \
+    cars/car.cpp \
+    map/block.cpp \
+    scene/scene.cpp \
+    neural_net/neuron.cpp \
+    neural_net/layer.cpp \
+    neural_net/net.cpp \
+    traffic_light/tlcontrol.cpp \
+    traffic_light/trafficlightgroup.cpp \
+    scene/graphicsviewzoom.cpp
 
 HEADERS += \
-        mainwindow.h \
-    map.h \
-    trafficlight.h \
-    carcenter.h \
-    car.h \
-    block.h \
-    scene.h \
-    neuron.h \
-    layer.h \
-    net.h \
-    tlcontrol.h \
-    trafficlightgroup.h
+        windows/mainwindow.h \
+    map/map.h \
+    traffic_light/trafficlight.h \
+    cars/carcenter.h \
+    cars/car.h \
+    map/block.h \
+    scene/scene.h \
+    neural_net/neuron.h \
+    neural_net/layer.h \
+    neural_net/net.h \
+    traffic_light/tlcontrol.h \
+    traffic_light/trafficlightgroup.h \
+    scene/graphicsviewzoom.h
 
 FORMS += \
         mainwindow.ui

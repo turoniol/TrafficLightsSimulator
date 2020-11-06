@@ -4,22 +4,17 @@
 #include <QDebug>
 #include <QThread>
 
-Car::Car(QPointF start_pos, Map* map_ptr, unsigned int *iptr, unsigned int *died)
+Car::Car(QPointF start_pos, Map* map_ptr)
 {
     size_x = map_ptr->getArray_x();
     size_y = map_ptr->getArray_y();
     this->map_ptr = map_ptr;
 
     int car_color_rand = rand() % 3;
-    kill = died;
-    iterations = iptr;
-    counter = 0;
     speed_x = 0;
     speed_y = 0;
     direction = 0;
-    fps = 1000/160;
     previous_block = nullptr;
-    move_timer = new QTimer(this);
 
     position.setX(start_pos.rx());
     position.setY(start_pos.ry());
@@ -28,8 +23,6 @@ Car::Car(QPointF start_pos, Map* map_ptr, unsigned int *iptr, unsigned int *died
 
     setPos(start_pos);
     setDirection();
-    connect(move_timer, SIGNAL(timeout()), this, SLOT(move()));
-    move_timer->start(fps);
 }
 void Car::move(){
     if(isNextBlock() || previous_block == nullptr){
@@ -39,8 +32,6 @@ void Car::move(){
     }
     if(isNextBlockFull())
         moveBy(speed_x, speed_y);
-    deleteCar();
-    ++counter;
 }
 void Car::setDirection()
 {
@@ -92,7 +83,7 @@ void Car::choosePixmapDirection(){
 }
 void Car::rotate()
 {
-    srand(static_cast<unsigned int>(time(nullptr)));
+    srand((unsigned)(time(nullptr)));
     int rotate_random = rand() & 2;
     switch(map_ptr->getBlockAt(position.rx(), position.ry()).getBlock_type()){
     case UP + LEFT:          // повороты
@@ -227,20 +218,16 @@ void Car::chooseCarColor(int prmtr){
         break;
     }
 }
-void Car::deleteCar()
+bool Car::canDeleteCar()
 {
     if(pos().rx() < 0 || pos().ry() < 0
-            || pos().rx() > PIXMAP_SIZE*(size_x - 1) || pos().ry() > PIXMAP_SIZE*(size_y - 1)
-/*            || (counter > 1.5f*map_ptr->getMax_x() && map_ptr->getMax_x() > map_ptr->getMax_y())
-            || (counter > 1.5f*map_ptr->getMax_y() && map_ptr->getMax_x() < map_ptr->getMax_y()) */){
+            || pos().rx() > PIXMAP_SIZE*(size_x - 1) || pos().ry() > PIXMAP_SIZE*(size_y - 1)){
         if(!map_ptr->getBlockAt(position.rx(), position.ry()).getHaveTL())
             map_ptr->getBlockAt(position.rx(), position.ry()).setFull(false);
-        ++(*kill);
-        *iterations += counter;
-        delete this;
+        return true;
     }
+    return false;
 }
 Car::~Car()
 {
-    delete move_timer;
 }

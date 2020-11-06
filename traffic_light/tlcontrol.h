@@ -1,7 +1,7 @@
 #ifndef TLCONTROL_H
 #define TLCONTROL_H
-#include <net.h>
-#include <trafficlightgroup.h>
+#include "neural_net/net.h"
+#include "trafficlightgroup.h"
 
 class TLControl
 {

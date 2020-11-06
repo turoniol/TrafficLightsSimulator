@@ -1,7 +1,7 @@
 #ifndef TRAFFICLIGHT_H
 #define TRAFFICLIGHT_H
 #include <QGraphicsItem>
-#include <map.h>
+#include "map/map.h"
 
 #define RED 32
 #define GREEN 64

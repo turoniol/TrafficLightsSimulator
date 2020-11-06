@@ -19,20 +19,20 @@ void Block::setFull(bool value)
 
 void Block::drawBlock()
 {
-//    int random_grass = rand() % 8;
+    int random_grass = rand() % 8 + 1;
     setTransformOriginPoint(PIXMAP_SIZE/2, PIXMAP_SIZE/2);
     switch (block_type) {
     case GRASS:
-//        if(random_grass > 4)
+        if(random_grass > 4)
             pixmap.load(":/images/grass.png");
-//        else if(random_grass == 1)
-//            pixmap.load(":/images/tree.jpeg");
-//        else if(random_grass ==  2)
-//            pixmap.load(":/images/build1.png");
-//        else if(random_grass ==  3)
-//            pixmap.load(":/images/build2.png");
-//        else if(random_grass ==  4)
-//            pixmap.load(":/images/build3.png");
+        else if(random_grass == 1)
+            pixmap.load(":/images/tree.jpeg");
+        else if(random_grass ==  2)
+            pixmap.load(":/images/build1.png");
+        else if(random_grass ==  3)
+            pixmap.load(":/images/build2.png");
+        else if(random_grass ==  4)
+            pixmap.load(":/images/build3.png");
         break;
     case DOWN:
         pixmap.load(":/images/road.png");
@@ -107,8 +107,8 @@ void Block::createBlock(int x, int y, const unsigned int type)
 }
 void Block::redrawPixmap()
 {
-    if(isFull()){
-        if(block_type != LEFT && block_type != RIGHT && block_type != UP && block_type != DOWN)
+    if (isFull()){
+        if (block_type != LEFT && block_type != RIGHT && block_type != UP && block_type != DOWN)
             setPixmap(QPixmap(":/images/road_central_false.png"));
         else
             setPixmap(QPixmap(":/images/road_false.png"));

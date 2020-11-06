@@ -3,7 +3,7 @@
 
 TrafficLightGroup::TrafficLightGroup(Map* map_ptr)
 {
-    time = 2000;
+    time = 5000;
     timer = new QTimer(this);
     this->map_ptr = map_ptr;
     prevstatus = true;
@@ -33,13 +33,16 @@ void TrafficLightGroup::joinTL(TrafficLight *tl, TrafficLight *array[])
 }
 void TrafficLightGroup::changeStatus()
 {
-    if(status){
+    if (status)
+    {
         group[1]->setColorGreen();
         group[2]->setColorGreen();
         group[0]->setColorRed();
         group[3]->setColorRed();
         timer->start(time);
-    }else{
+    }
+    else
+    {
         group[0]->setColorGreen();
         group[3]->setColorGreen();
         group[1]->setColorRed();
@@ -110,7 +113,8 @@ void TrafficLightGroup::addZoneUp(int x, int y)
 void TrafficLightGroup::addZoneDown(int x, int y)
 {
     unsigned int iterations = 0;
-    for(y += PIXMAP_SIZE; y <  map_ptr->getMax_y() && iterations < zone_size && !map_ptr->getBlockAt(x, y).getHaveTL() ; y += PIXMAP_SIZE, ++iterations)
+    bool yLessThanMaxY = y <  (int)map_ptr->getMax_y();
+    for(y += PIXMAP_SIZE; yLessThanMaxY && iterations < zone_size && !map_ptr->getBlockAt(x, y).getHaveTL() ; y += PIXMAP_SIZE, ++iterations)
         zone.emplace_back(&map_ptr->getBlockAt(x, y));
 
     while(iterations < zone_size){

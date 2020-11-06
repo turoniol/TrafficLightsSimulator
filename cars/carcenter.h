@@ -1,21 +1,22 @@
 #ifndef CARCENTER_H
 #define CARCENTER_H
-#include <block.h>
-#include <car.h>
+#include "map/block.h"
+#include "car.h"
 #include <QGraphicsItem>
-#include <QTimer
+#include <QTimer>
 
-class CarCenter : public QGraphicsRectItem
+class CarCenter : public QObject, public QGraphicsRectItem
 {
+  Q_OBJECT
 private:
-    Car* car;
+    QTimer* carMoveTimer;
     QVector<Block*> spawners;
     QVector<Car*> cars;
-    unsigned int car_number, car_iterations;
+    Car *findNullPtr();
 public:
     CarCenter();
     void searchCenterPoint(Map *map);
     Car &addNewCar(Map *map_ptr);
-    unsigned int getCarNumber() const;
+    ~CarCenter();
 };
 #endif // CARCENTER_H

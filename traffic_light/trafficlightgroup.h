@@ -1,6 +1,6 @@
 #ifndef TRAFFICLIGHTGROUP_H
 #define TRAFFICLIGHTGROUP_H
-#include <trafficlight.h>
+#include "trafficlight.h"
 #include <QTimer>
 
 class TrafficLightGroup : public QObject{

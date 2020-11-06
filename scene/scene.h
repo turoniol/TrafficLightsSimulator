@@ -1,27 +1,30 @@
 #ifndef SCENE_H
 #define SCENE_H
 #include <QGraphicsScene>
-#include <map.h>
-#include <carcenter.h>
-#include <tlcontrol.h>
+#include "map/map.h"
+#include "cars/carcenter.h"
+#include "traffic_light/tlcontrol.h"
 
 class Scene : public QGraphicsScene
 {
+  Q_OBJECT
 private:
     bool system_on = false;
     Map map;
     CarCenter car_centers;
-    std::vector<TrafficLightGroup*> traffic_lights_group;
+    QTimer *carSpawnTimer;
+    QTimer *trafficLightsTimer;
+    std::vector <TrafficLightGroup*> traffic_lights_group;
     std::vector <TLControl*> controlers;
 public:
+    Scene();
     void addMap(const QString &file_name);
     void addTrafficLights();
     void addCar();
     void renewTLStatus();
-    ~Scene();
-    unsigned int getCarNumber() const;
     void setSystem_on(bool value);
     bool getSystem_on() const;
+    ~Scene();
 };
 
 #endif // SCENE_H
