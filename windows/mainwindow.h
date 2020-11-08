@@ -28,11 +28,9 @@ public:
     void createMapFileNameArray();
 public slots:
     void addScene();
-private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_left_clicked();
-    void on_pushButton_right_clicked();
-    void on_switchbutt_clicked();
+    // QWidget interface
+protected:
+    virtual void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif // MAINWINDOW_H

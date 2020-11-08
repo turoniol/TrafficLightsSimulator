@@ -45,7 +45,8 @@ bool GraphicsViewZoom::eventFilter(QObject *object, QEvent *event) {
       target_viewport_pos = mouse_event->pos();
       target_scene_pos = _view->mapToScene(mouse_event->pos());
     }
-  } else if (event->type() == QEvent::Wheel) {
+  }
+  else if (event->type() == QEvent::Wheel) {
     QWheelEvent* wheel_event = static_cast<QWheelEvent*>(event);
     if (QApplication::keyboardModifiers() == _modifiers) {
       if (wheel_event->angleDelta().y() != 0) {

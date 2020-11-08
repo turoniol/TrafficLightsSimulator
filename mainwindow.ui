@@ -24,59 +24,20 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>0</y>
-      <width>91</width>
+      <width>161</width>
       <height>41</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Add car</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_left">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>130</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>&lt;-</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_right">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>140</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="switchbutt">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>200</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">font: 87 20pt &quot;Segoe UI Black&quot;;</string>
     </property>
     <property name="text">
-     <string>Switch on</string>
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>

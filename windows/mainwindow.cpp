@@ -4,6 +4,7 @@
 #include <QDir>
 #include <QScrollBar>
 #include <QScreen>
+#include <QKeyEvent>
 #include <QDebug>
 #include "dirent.h"
 
@@ -15,15 +16,15 @@ MainWindow::MainWindow(QWidget *parent) :
   scene = nullptr;
   ui->setupUi(this);
   QScreen *screen = QGuiApplication::primaryScreen();
-  QRect rec = screen->geometry();
+  QRect rec = screen->availableGeometry();
   w = rec.width();
   h = rec.height();
+
   // graphics
-  ui->graphicsView->setGeometry(0, 0, w, h);
-  ui->pushButton->setGeometry(1700, 0, 100, 50);
-  ui->pushButton_left->setGeometry(1700, 50, 50, 50);
-  ui->pushButton_right->setGeometry(1750, 50, 50, 50);
-  ui->switchbutt->setGeometry(1700, 100, 100, 50);
+  int srcollbarHeight = ui->graphicsView->horizontalScrollBar()->height();
+  ui->graphicsView->setGeometry(0, 0, w, h - srcollbarHeight);
+  ui->label->setGeometry(0, 0, 100, 100);
+  ui->label->setText("OFF");
 
   scene = nullptr;
   graphicsViewZoom = new GraphicsViewZoom(ui->graphicsView);
@@ -56,7 +57,6 @@ void MainWindow::addScene()
   scene = new Scene;
 
   ui->graphicsView->setScene(scene);
-  scene->setSceneRect(0, 0, w, h);
 
   createMapFileNameArray();
 
@@ -64,40 +64,42 @@ void MainWindow::addScene()
   scene->addTrafficLights();
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-  scene->addCar();
+  if (event->key() == Qt::Key_Z)
+    {
+      if (mapIndex == 0)
+        mapIndex = lastMapIndex;
+      else
+        --mapIndex;
+      addScene();
+    }
+  else if (event->key() == Qt::Key_X)
+    {
+      if (mapIndex == lastMapIndex)
+        mapIndex = 0;
+      else
+        ++mapIndex;
+      addScene();
+    }
+  else if (event->key() == Qt::Key_Space)
+    {
+      if (!scene->getSystem_on())
+        {
+          ui->label->setText("ON");
+          scene->setSystem_on(true);
+        }
+      else
+        {
+          ui->label->setText("OFF");
+          scene->setSystem_on(false);
+        }
+    }
 }
-void MainWindow::on_pushButton_left_clicked()
-{
-  if(mapIndex == 0)
-    mapIndex = lastMapIndex;
-  else
-    --mapIndex;
-  addScene();
-}
-void MainWindow::on_pushButton_right_clicked()
-{
-  if(mapIndex == lastMapIndex)
-    mapIndex = 0;
-  else
-    ++mapIndex;
-  addScene();
-}
+
 MainWindow::~MainWindow()
 {
   delete ui;
 }
 
-void MainWindow::on_switchbutt_clicked()
-{
-  if(!scene->getSystem_on()){
-      ui->switchbutt->setText("Switch off");
-      scene->setSystem_on(true);
-    }
-    else
-    {
-      ui->switchbutt->setText("Switch on");
-      scene->setSystem_on(false);
-    }
-}
+

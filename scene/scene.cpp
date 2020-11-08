@@ -6,7 +6,7 @@ Scene::Scene()
   carSpawnTimer = new QTimer(this);
   trafficLightsTimer = new QTimer(this);
 
-  int spawnTime  = 500;
+  int spawnTime  = 100;
   int renewTLColorTime = 200;
 
   carSpawnTimer->start(spawnTime);
@@ -34,10 +34,16 @@ bool Scene::getSystem_on() const
 void Scene::addMap(const QString &file_name) //добавляет и рисует карту на сцену
 {
   map.loadMapFromFile(file_name);
+  int array_x = map.getArray_x();
+  int array_y = map.getArray_y();
+  int graphicsWidth = array_x * PIXMAP_SIZE;
+  int graphicsHeight = array_y * PIXMAP_SIZE;
 
-  for (int counter_y = 0; (unsigned int)counter_y < map.getArray_y(); counter_y++)
-    for (int counter_x = 0; (unsigned int)counter_x < map.getArray_x(); counter_x++)
+  for (int counter_y = 0; counter_y < array_y; counter_y++)
+    for (int counter_x = 0; counter_x < array_x; counter_x++)
       addItem(&map.getMap_ptr()[counter_x + counter_y*map.getArray_x()]);
+
+  setSceneRect(0, 0, graphicsWidth, graphicsHeight);
 }
 void Scene::addTrafficLights() //добавляет светофоры на сцену
 {

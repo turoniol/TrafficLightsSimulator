@@ -19,10 +19,10 @@ void TrafficLightGroup::changeColor()
 }
 void TrafficLightGroup::joinTL(TrafficLight *tl, TrafficLight *array[])
 {
-    unsigned int x = static_cast<unsigned int>(tl->pos().rx());
-    unsigned int y = static_cast<unsigned int>(tl->pos().ry());
-    unsigned int x_pos = x/PIXMAP_SIZE;
-    unsigned int y_pos = y/PIXMAP_SIZE;
+    unsigned int x = (unsigned)(tl->pos().rx());
+    unsigned int y = (unsigned)(tl->pos().ry());
+    unsigned int x_pos = x / PIXMAP_SIZE;
+    unsigned int y_pos = y / PIXMAP_SIZE;
 
     include(x_pos, y_pos, array);
     include(x_pos + 1, y_pos, array);
